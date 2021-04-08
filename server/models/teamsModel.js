@@ -10,6 +10,6 @@ const teamSchema = new Schema({
     resourceCount: { type: Number },
 }, { timestamps: true });
 
-var Team = mongoose.model('Team', teamSchema);
+var Team = mongoose.model('Team', teamSchema, 'Teams');
 
 module.exports = { Team };
