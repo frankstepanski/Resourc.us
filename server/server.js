@@ -3,6 +3,7 @@ const cors = require('cors')
 const app = express();
 const path = require('path');
 const db = require('./models/db');
+const session = require('express-session')
 
 const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
@@ -17,6 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
+app.use(session({
+    secret:'Keep it secret',
+    name:'uniqueSessionID',
+    saveUninitialized:false}))
 app.use('/user', userRouter);
 app.use('/teams', teamRouter);
 app.use('/resource', resourceRouter);
@@ -33,9 +38,11 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/', function (req, res) {
     if (req.session.loggedIn) {
-        res.redirect('/')
+        console.log(req.session);
+        res.redirect('/teams');
     } else {
-        res.sendFile(path.join(__dirname, '../dist/index.html'))
+        console.log(req.session);
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
     }
 })
 

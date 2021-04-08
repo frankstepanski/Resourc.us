@@ -1,4 +1,5 @@
 const { User } = require('../models/userModel');
+const session = require('express-session')
 const bcrypt = require('bcrypt');
 const userController = {};
 
@@ -29,21 +30,25 @@ userController.createUser = (req, res, next) => {
 
 userController.validateUser = (req, res, next) => {
 	const requestBody = req.body;
+	res.locals.username = requestBody.email;
+	console.log('request body', requestBody)
+
 	console.log('userController.validateUser:', 'reached controller');
 	User.findOne({ email: requestBody.email }).exec()
 		.then(data => {
+			console.log(data);
 			bcrypt.compare(requestBody.password, data.hash, function(err, result) {
 				if (result === true) {
 					console.log('userController.validateUser:', 'Password comparison is a match');
 					next();
 				} else {
-					// console.log('userController.validateUser:', 'Password doesnt match');
+					console.log('userController.validateUser:', 'Password doesnt match');
 					next({
 						log: `validateUser - ERROR: Password doesn't match`,
 						message: { 
 							err: 'Error occured in userController.bcrypt',
 							message: 'Password does not match'
-						}
+						}	
 					}) 
 				}
 			})
@@ -58,6 +63,15 @@ userController.validateUser = (req, res, next) => {
 				}
 			}) 
 		});
+}
+
+userController.sessionUser = (req, res, next) => {
+	console.log('Look Here', req)
+	req.session.loggedIn = true;
+	req.session.username = res.locals.username 
+	console.log (req.session);
+	res.redirect('/teams')
+	next()
 }
 
 module.exports = userController;

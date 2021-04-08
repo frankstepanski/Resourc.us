@@ -3,7 +3,7 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 router.post('/login',
-    userController.validateUser,
+    userController.validateUser,userController.sessionUser,
     (req, res) => {
         console.log('login User router is working');
         res.status(200).json({});
