@@ -14,6 +14,7 @@ const config = {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
         exclude: /node_modules/,
+        
       },
       {
         test: /\.css$/,
@@ -54,7 +55,19 @@ const config = {
     })
   ],
   devServer: {
-    contentBase: "./dist",
+    contentBase: path.resolve(__dirname, 'dist'),
+    open: true,
+    clientLogLevel: 'silent',
+    port: 4000,
+    historyApiFallback: true,
+    hot: true,
+    // proxy: { "*": 
+    //   {
+    //     target: `http://[::1]:3000`,
+    //     secure: false,
+    //     changeOrigin: true
+    //   } 
+    // }
   },
 };
 
