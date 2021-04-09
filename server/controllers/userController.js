@@ -29,6 +29,7 @@ userController.createUser = (req, res, next) => {
 }
 
 userController.validateUser = (req, res, next) => {
+	console.log('SESSION ID', req.headers.cookie)
 	const requestBody = req.body;
 	res.locals.username = requestBody.email;
 	console.log('request body', requestBody)
@@ -70,7 +71,7 @@ userController.sessionUser = (req, res, next) => {
 	req.session.loggedIn = true;
 	req.session.username = res.locals.username 
 	console.log (req.session);
-	res.redirect('/teams')
+	res.redirect('/teams/list')
 	next()
 }
 

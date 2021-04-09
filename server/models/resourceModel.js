@@ -8,6 +8,6 @@ const resourceSchema = new Schema({
     category: { type: String, required: true }
 }, { timestamps: true });
 
-const Resource = mongoose.model('Resource', resourceSchema, 'Resources',);
+const Resource = mongoose.model('Resource', resourceSchema);
 
 module.exports = { Resource };

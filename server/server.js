@@ -1,9 +1,10 @@
 const express = require('express');
-const cors = require('cors')
+// const cors = require('cors')
 const app = express();
 const path = require('path');
 const db = require('./models/db');
 const session = require('express-session')
+
 
 const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
@@ -11,17 +12,17 @@ const resourceRouter = require('./routes/resource');
 
 const PORT = 3000;
 
-app.use(cors())
+// app.use(cors())
 
 // HANDLE ASSETS
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 // ROUTES
 app.use(session({
     secret:'Keep it secret',
     name:'uniqueSessionID',
-    saveUninitialized:false}))
+    saveUninitialized:true}));
 app.use('/user', userRouter);
 app.use('/teams', teamRouter);
 app.use('/resource', resourceRouter);

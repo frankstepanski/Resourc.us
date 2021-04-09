@@ -3,15 +3,22 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 router.post('/login',
-    userController.validateUser,userController.sessionUser,
+    userController.validateUser, userController.sessionUser,
     (req, res) => {
         console.log('login User router is working');
-        res.status(200).json({});
+        // res.status(200).json({});
     }
 );
 
-router.post('/',
-    userController.createUser,
+// router.get('/login/:random',
+//     (req,res) => {
+//         console.log(req.params);
+//         res.status(200).json({})
+//     }
+// );
+
+router.post('/create',
+    userController.createUser, 
     (req, res) => {
         console.log('login User router is working');
         console.log(res.locals.response);
