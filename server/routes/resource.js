@@ -33,7 +33,7 @@ router.get('/listAll',
     resourceController.listAllResources,
     (req, res) => {
         console.log('list all resources router is working');
-        console.log(res.locals.response);
+        // console.log(res.locals.response);
         res.status(200).json(res.locals.response);
     }
 );

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 // testing
-const MONGO_USERNAME = 'goblinshark';
-const MONGO_PASSWORD = 'goblinshark';
-const MONGO_HOSTNAME = 'cluster0.2j9ni.mongodb.net/';
+const MONGO_USERNAME = 'dylan2040';
+const MONGO_PASSWORD = 'dylan2040';
+const MONGO_HOSTNAME = 'cluster0.xaxgv.mongodb.net';
 // const MONGO_PORT = '27017';
-const MONGO_DB = 'resourcus';
+const MONGO_DB = 'Resourc';
 
 const url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/`;
 
