@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 // testing
 const MONGO_USERNAME = 'dylan2040';
 const MONGO_PASSWORD = 'dylan2040';
-const MONGO_HOSTNAME = 'cluster0.xaxgv.mongodb.net';
+const MONGO_HOSTNAME = 'cluster0.xaxgv.mongodb.net/';
 // const MONGO_PORT = '27017';
 const MONGO_DB = 'Resourc';
 
@@ -16,3 +16,8 @@ mongoose.connect(url, {
 })
     .then(() => console.log('Connected to Resourcus DB.'))
     .catch(err => console.log(err));
+
+
+
+
+    
