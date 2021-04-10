@@ -7,9 +7,18 @@ import { Link } from 'react-router-dom';
 
 function ResourceCard({ teamId }) {
   const [_resource, setResource] = useState([]);
+  const [_backupResource, setBackupResource] = useState([]);
   const [count, setCount] = useState(0);
+  const [tags, setTags] = useState([]);
   // const [_upvote, setUpvote] = useState({});
-  const _payload = { "teamId": teamId }
+  console.log("teamID",teamId);
+  let _payload = {};
+  if(!teamId){
+     _payload = {};
+  } else{
+     _payload = { "teamId": teamId }
+  }
+  console.log(_payload);
   
   useEffect(() => {
     console.log(_payload)
@@ -26,9 +35,13 @@ function ResourceCard({ teamId }) {
       })
       .then((data) => {
         // console.log(data);
+        console.log('data',data);
         data.sort((a,b) => (a.votes < b.votes) ? 1: -1);
-        console.log('data', data);
-        setResource(data)
+        const tag = data.map( el =>  el.category);
+        console.log('tags',getUnique(tag));
+        setTags(getUnique(tag));
+        setResource(data);
+        setBackupResource(data);
         console.log('_resource:', _resource)
       })
       .catch((err) => {
@@ -38,6 +51,27 @@ function ResourceCard({ teamId }) {
     console.log("TEAM ID in resource card: ", teamId)
   }, [count]);
 
+  function getUnique(arr){
+    const result = [];
+    arr.forEach( el => {
+      if(!result.includes(el)) result.push(el);
+    });
+    return result;
+  }
+
+  function getCategory(event){
+    const category = event.target.innerHTML;
+    console.log(category)
+    if (category === 'All') setResource(_backupResource);
+    else {
+    const newResource = _backupResource.filter(res => {
+      if(res.category === category) return true;
+      return false;
+    })
+    console.log('filter result',newResource);
+    setResource(newResource)
+    }
+  }
   //get resource id
   //get current resource vote
   //update state
@@ -129,23 +163,43 @@ function ResourceCard({ teamId }) {
   
   return (
     <div className="container">
+      <div className= "tagContainer">
+        <h2>Filter:</h2>             
+        <div className="meta" onClick={getCategory}>
+          <div>All</div>
+          { tags.map((tag) =>
+          <div>{tag}</div>
+          )}          
+        </div>        
       
+      </div>
       {_resource.map((resource,index) => (
+        <div className="resourceContainerRS">
+        
         <div
           className="resourceCard"
           key={resource._id + index}
         >
-          <div className="votes">
-            <div className="voteCount">{resource.votes}</div>
-            <div className="actions">
-              <button><i onClick={handleUpvote}  votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
-              <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+          <div className="resourceArea">
+            <div className="votes">
+              <div className="voteCount">{resource.votes}</div>
+              <div className="actions">
+                <button><i onClick={handleUpvote}  votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
+                <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+              </div>
+            </div>
+            <div className="link">
+              <Link to={resource.link}>{resource.link}</Link>
             </div>
           </div>
-          <div className="link">
-            <Link to={resource.link}>{resource.link}</Link>
+          
+          <div className="meta" onClick={getCategory}>
+            <div>{resource.category}</div>
           </div>
         </div>
+        
+        </div>
+        
       ))}
     </div>
   );

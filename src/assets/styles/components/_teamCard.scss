@@ -74,9 +74,49 @@
 
 .resourceCard {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     justify-content: left;
+    .meta 
+        div {
+            font-size: 0.75rem;
+            background-color: #8ac2f3;
+            display: inline-block;
+            margin-left: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 0.25em 0.4em;
+            border-radius: 3px;
+            color: rgb(111, 114, 117);
+            font-weight: 700;
+            letter-spacing: 0.015rem;
+            margin-right: 0.25rem;
+            &:first-child {
+                background-color: #7ab0ee65;
+                margin-right: 0.5rem;
+            }
+    }
+    
+    
+}
+
+.resourceContainerRS {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 20px 20px;
+       
+    
+}
+
+
+.resourceContainer {
+    display: flex;
+    padding: 10px 20px 20px 20px;
+}
+
+.resourceArea {
+    flex-direction: row;
+    
     .votes {
         padding: 1rem;
         & > div {
@@ -95,11 +135,6 @@
             }
         }
     }
-}
-
-.resourceContainer {
-    display: flex;
-    padding: 10px 20px 20px 20px;
 }
 .resourceCardHome {
     // display: flex;
@@ -191,6 +226,35 @@
             position: absolute;
             bottom: 1rem;
             right: 1rem;
+        }
+    }
+}
+
+.container
+.tagContainer {
+    display: flex;
+    flex-direction: row;
+    h2 {
+        color: rgb(83, 76, 76);
+        margin-right : 10px;
+    }
+    .meta {
+        div {
+            font-size: 0.75rem;
+            float: right;
+            margin-bottom: 20px;
+            background-color: #838d96;
+            display: inline-block;
+            padding: 0.25em 0.4em;
+            border-radius: 3px;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.015rem;
+            margin-right: 0.25rem;
+            &:first-child {
+                background-color: #343a40;
+                margin-right: 0.5rem;
+            }
         }
     }
 }

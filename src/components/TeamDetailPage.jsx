@@ -39,7 +39,7 @@ function TeamDetailPage({ match }) {
   }, [])
 
   return (
-    <div class="container teamContainer">
+    <div className="container teamContainer">
       <div className="teamCard teamHero">{team.map(t => <div key={t._id}>
         <header>
           <div className="mask"></div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DropdownButton from "react-bootstrap/DropdownButton";
-
 function createResource() {
   // State
   const [_payload, setPayload] = useState({
@@ -10,9 +9,11 @@ function createResource() {
     link: "",
     description: "",
     category: "",
+    teamId: "",
     votes: 0,
   });
   const [_teams, setTeams] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     fetch("http://localhost:3000/teams/list")
       .then((response) => {
@@ -25,10 +26,18 @@ function createResource() {
       .catch((err) => {
         console.log("GET FAILED", err);
       });
+      setPayload({..._payload, teamId: "606fa26f9146be28386764d2"})
   }, []);
+  function selectTeam(e) {
+    const payload = _payload;
+    payload.teamId = e.currentTarget.value;
+    setPayload(payload);
+    console.log(_payload);
+  }
   function handleChange(event) {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
-    console.log(_payload);
+    console.log("payload", _payload);
+    console.log("team", _teams)
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
   function handleClick(event) {
@@ -53,18 +62,12 @@ function createResource() {
         console.log("Post Fail", err);
       });
     // ADD RESET STATE HERE AFTER SUMBIT
-  }
-
-  function selectTeam(e) {
-    const payload = _payload;
-    payload.teamId = e.currentTarget.value;
-    setPayload(payload);
-    console.log(_payload);
+    console.log("teamId", _payload.teamId);
+    history.push(`/teams/${_payload.teamId}`);
   }
   return (
-    <div className='container formContainer'>
+    <div className="container formContainer">
       <h1>Create Resource Page</h1>
-
       <form>
         <div className="form-group">
           <input
@@ -106,13 +109,11 @@ function createResource() {
             placeholder="Category"
           ></input>
         </div>
-
         <select onChange={selectTeam}>
           {_teams.map((team) => (
             <option value={team._id}>{team.name}</option>
           ))}
         </select>
-
         <button onClick={handleClick} className="btn btn-lg btn-info">
           Create Resource
         </button>
@@ -120,5 +121,4 @@ function createResource() {
     </div>
   );
 }
-
 export default createResource;

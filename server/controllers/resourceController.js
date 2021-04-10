@@ -1,3 +1,4 @@
+const { request } = require('express');
 const { Resource } = require('../models/resourceModel');
 const resourceController = {};
 
@@ -27,10 +28,8 @@ resourceController.createResource = (req, res, next) => {
 
 resourceController.listResources = (req, res, next) => {
     const requestBody = req.body;
-
-    Resource.find({
-        teamId: requestBody.teamId,
-    })
+    
+    Resource.find(requestBody)   
         .then(data => {
             res.locals.response = data;
             console.log('resourceController.listResources:', 'resources listed')
