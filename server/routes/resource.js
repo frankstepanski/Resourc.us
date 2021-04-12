@@ -47,4 +47,13 @@ router.post('/upvote',
     }
 );
 
+router.post('/delete',
+    resourceController.deleteResource,
+    (req, res) => {
+        console.log('delete resource router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
 module.exports = router;

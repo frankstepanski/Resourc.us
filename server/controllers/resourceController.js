@@ -117,4 +117,25 @@ resourceController.upvoteResource = (req, res, next) => {
         });
 }
 
+resourceController.deleteResource = (req, res, next) => {
+    const requestBody = req.body;
+    Resource.findOneAndDelete({
+        _id: requestBody._id
+    })
+    .then(data => {
+        res.locals.response = data;
+        console.log('resourceController.deleteResource: ', 'resource deleted')
+        next();
+    })
+    .catch(err => {
+        next({
+            log: `Delete Resource - ERROR: ${err}`,
+            message: {
+                err: 'Error occured in resourceController.deleteResource ',
+                message: err
+            }
+        })
+    });
+}
+
 module.exports = resourceController;
