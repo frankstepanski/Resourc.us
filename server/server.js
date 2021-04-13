@@ -9,6 +9,7 @@ const session = require('express-session')
 const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
 const resourceRouter = require('./routes/resource');
+const commentsRouter = require('./routes/comments')
 
 const PORT = 3000;
 
@@ -26,6 +27,7 @@ app.use(session({
 app.use('/user', userRouter);
 app.use('/teams', teamRouter);
 app.use('/resource', resourceRouter);
+app.use('/comments', commentsRouter)
 
 // Renders index.html with static assets
 app.use(express.static(path.join(__dirname, '../dist')));
