@@ -1,3 +1,4 @@
+const { request } = require('express');
 const { Resource } = require('../models/resourceModel');
 const resourceController = {};
 
@@ -27,10 +28,8 @@ resourceController.createResource = (req, res, next) => {
 
 resourceController.listResources = (req, res, next) => {
     const requestBody = req.body;
-
-    Resource.find({
-        teamId: requestBody.teamId,
-    })
+    
+    Resource.find(requestBody)   
         .then(data => {
             res.locals.response = data;
             console.log('resourceController.listResources:', 'resources listed')
@@ -115,6 +114,27 @@ resourceController.upvoteResource = (req, res, next) => {
                 }
             })
         });
+}
+
+resourceController.deleteResource = (req, res, next) => {
+    const requestBody = req.body;
+    Resource.findOneAndDelete({
+        _id: requestBody._id
+    })
+    .then(data => {
+        res.locals.response = data;
+        console.log('resourceController.deleteResource: ', 'resource deleted')
+        next();
+    })
+    .catch(err => {
+        next({
+            log: `Delete Resource - ERROR: ${err}`,
+            message: {
+                err: 'Error occured in resourceController.deleteResource ',
+                message: err
+            }
+        })
+    });
 }
 
 module.exports = resourceController;
