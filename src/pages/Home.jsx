@@ -21,6 +21,7 @@ function HomePage() {
           headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json",
+            
           },
           body: JSON.stringify({"teamId": team._id}),
       })
