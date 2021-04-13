@@ -6,7 +6,8 @@ describe('Testing All Routes', () => {
     });
 
     it('Visit Home page!', () => {       
-        cy.contains('Resourc.us').click()        
+        cy.contains('Resourc.us').click();
+        cy.url().should('include', '/')        
     });
 
     it('Visit View All Teams!', () => {            
@@ -26,9 +27,19 @@ describe('Create Resource', () => {
         cy.url().should('include', '/CreateResource')
     })
 
-    it('it focuses the input', () =>{
-        cy.get('input[name="title"]').as('Title'); 
-        cy.get('input[name="title"]').type('Testing'); 
+    it('Inserting values in from', () =>{
+        cy.get('input[name="title"]').type('Testing Javascript'); 
+        cy.get('input[name="link"]').type('https://testingjavascript.com/'); 
+        cy.get('input[name="description"]').type('Medium Article about testing with javascript');
+        cy.get('input[name="category"]').type('Testing');
+        cy.get('select').select('js.j');       
         
     })
+
+    // it('submitting the create resource form', () => {
+    //     cy.get('form button').focus().type('{enter}');
+    //     cy.url().should('include', '/teams/606fa2b39146be28386764d3')
+    // })
+
+    
 })
