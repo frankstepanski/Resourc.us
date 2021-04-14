@@ -41,10 +41,10 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/', function (req, res) {
     if (req.session.loggedIn) {
-        console.log(req.session);
+        console.log("req.session:", req.session);
         res.redirect('/teams');
     } else {
-        console.log(req.session);
+        console.log("req.session:", req.session);
         res.sendFile(path.join(__dirname, '../dist/index.html'));
     }
 })
