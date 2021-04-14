@@ -274,3 +274,23 @@
         }
     }
 }
+
+.link {
+    display: flex;
+    flex-direction: column;    
+    a {
+      text-decoration: none
+    }
+    .resourceTitle {
+        color: black;
+        font-weight: bold;
+    }
+    .resourceDescription {
+        color: rgb(94, 89, 89);
+        font-size: 13px;
+    }
+    img {
+        width: 400px;
+
+    }
+}
