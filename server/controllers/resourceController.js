@@ -4,7 +4,7 @@ const resourceController = {};
 
 resourceController.createResource = (req, res, next) => {
     const requestBody = req.body;
-    console.log("request body", requestBody)
+    //  console.log("request body", requestBody)
     Resource.create({
         link: requestBody.link,
         teamId: requestBody.teamId,
@@ -12,7 +12,7 @@ resourceController.createResource = (req, res, next) => {
     })
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.createResource:', 'resource created')
+            //  console.log('resourceController.createResource:', 'resource created')
             next();
         })
         .catch(err => {
@@ -32,7 +32,7 @@ resourceController.listResources = (req, res, next) => {
     Resource.find(requestBody)   
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.listResources:', 'resources listed')
+            //  console.log('resourceController.listResources:', 'resources listed')
             next();
         })
         .catch(err => {
@@ -72,7 +72,7 @@ resourceController.listAllResources = (req, res, next) => {
     Resource.find({})
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.listAllResources:', 'all resources listed')
+            //  console.log('resourceController.listAllResources:', 'all resources listed')
             next();
         })
         .catch(err => {
