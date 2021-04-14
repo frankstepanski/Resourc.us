@@ -16,7 +16,7 @@
     "restart": "npm run build-dev && npm run server",
     "react": "webpack serve --env NODE_ENV=development --mode development",
     "dev": "concurrently \"nodemon server/server.js\" \"npm run react\"",
-    "e2e":"cypress open"
+    "e2e": "cypress open"
   },
   "dependencies": {
     "axios": "^0.21.1",
