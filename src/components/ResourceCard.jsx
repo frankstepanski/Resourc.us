@@ -160,6 +160,31 @@ function ResourceCard({ teamId }) {
         console.log("Post Fail", err);
       });
   }
+
+  function deleteResource(event){
+    console.log(event.target.value);
+    const payload = {_id: event.target.value}
+    fetch("http://localhost:3000/resource/delete", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log('data sent back:', data);
+        
+        setCount(count + 1);
+        // setResource(newResource)
+      })
+      .catch((err) => {
+        console.log("Post Fail", err);
+      });
+  }
   
   return (
     <div className="container">
@@ -180,6 +205,9 @@ function ResourceCard({ teamId }) {
           className="resourceCard"
           key={resource._id + index}
         >
+          <div className="deleteContainer">
+          <button className="deleteResource" value={resource._id} onClick={deleteResource}>x</button>
+          </div>
           <div className="resourceArea">
             <div className="votes">
               <div className="voteCount">{resource.votes}</div>
