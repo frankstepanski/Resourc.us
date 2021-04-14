@@ -11,10 +11,9 @@ function HomePage() {
   
   
   async function fetchedData() {
-    //const resArr = [];
     const teamData = await fetch("http://localhost:3000/teams/list");
     const teams = await teamData.json();
-    const firstThreeTeams = teams.slice(1,4);
+    const firstThreeTeams = teams.slice(0,3);
     firstThreeTeams.map(async (team,index) => {
       const resources = await fetch("http://localhost:3000/resource/list",{
         method: "POST",
