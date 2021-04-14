@@ -7,7 +7,7 @@ const resourceSchema = new Schema({
     votes: { type: Number, default: 0 },
     category: { type: String, required: true },
     title: { type: String, required: false },
-    image: { type: String, required: false },
+    img: { type: String, required: false },
     description: { type: String, required: false },
 }, { timestamps: true });
 

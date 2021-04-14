@@ -12,6 +12,7 @@ function ResourceCard({ teamId }) {
   const [tags, setTags] = useState([]);
   // const [_upvote, setUpvote] = useState({});
   console.log("teamID",teamId);
+  console.log("resource",_resource);
   let _payload = {};
   if(!teamId){
      _payload = {};
@@ -217,7 +218,12 @@ function ResourceCard({ teamId }) {
               </div>
             </div>
             <div className="link">
-              <Link to={resource.link}>{resource.link}</Link>
+              {/* <Link to={resource.link}>{resource.link}</Link> */}
+              <a href={resource.link} >
+              <div className="resourceTitle">{resource.title}</div>
+              <div className="resourceDescription">{resource.description}</div>              
+              <img src={resource.img} />
+              </a>
             </div>
           </div>
           
