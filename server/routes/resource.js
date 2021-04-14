@@ -3,7 +3,7 @@ const resourceController = require('../controllers/resourceController');
 const router = express.Router();
 
 router.post('/create',
-    resourceController.createResource,
+    resourceController.scrapeResources,
     (req, res) => {
         // console.log('create resource router is working');
         // console.log(res.locals.response);
