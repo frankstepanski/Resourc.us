@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 function createResource() {
@@ -40,6 +40,7 @@ function createResource() {
     console.log("team", _teams)
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
+
   function handleClick(event) {
     event.preventDefault();
     //test if server is working
@@ -63,7 +64,12 @@ function createResource() {
       });
     // ADD RESET STATE HERE AFTER SUMBIT
     console.log("teamId", _payload.teamId);
-    history.push(`/teams/${_payload.teamId}`);
+    // history.push(`/teams/${_payload.teamId}`);
+    return <Redirect 
+      to = {{
+        pathname: `/teams/${_payload.teamId}`
+      }}
+      />
   }
   return (
     <div className="container formContainer">
