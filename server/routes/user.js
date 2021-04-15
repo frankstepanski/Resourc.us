@@ -10,6 +10,11 @@ router.post('/login',
     }
 );
 
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {});
+    res.send('Thank you! Visit again!')
+})
+
 // router.get('/login/:random',
 //     (req,res) => {
 //         console.log(req.params);
