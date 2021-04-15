@@ -84,7 +84,12 @@ function HomePage() {
                   <div className="voteCount">{res.votes}</div>
                 </div>
                 <div className="link">
-                <Link to={res.link}>{res.link}</Link>
+                {/* <Link to={res.link}>{res.link}</Link> */}
+                <a href={res.link} >
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                </a>
                 </div>
               </div>
               )}
@@ -96,7 +101,12 @@ function HomePage() {
                     <div className="voteCount">{res.votes}</div>
                   </div>
                   <div className="link">
-                    <Link to={res.link}>{res.link}</Link>
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} >
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                   </a>
                   </div>
                 </div>
               )}
@@ -108,7 +118,12 @@ function HomePage() {
                     <div className="voteCount">{res.votes}</div>
                   </div>
                   <div className="link">
-                    <Link to={res.link}>{res.link}</Link>
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} >
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                  </a>
                   </div>
                 </div>
               )}
