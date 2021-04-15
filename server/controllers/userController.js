@@ -31,7 +31,9 @@ userController.createUser = (req, res, next) => {
 userController.validateUser = (req, res, next) => {
 	// console.log('SESSION ID', req.headers.cookie)
 	const requestBody = req.body;
-	// const ssid = req.sessionID
+	const ssid = req.sessionID
+	console.log('req.sessionID:' , req.sessionID)
+	console.log('req:', req)
 	res.locals.username = requestBody.email;
 	// console.log('request body', requestBody)
 
@@ -42,7 +44,14 @@ userController.validateUser = (req, res, next) => {
 			bcrypt.compare(requestBody.password, data.hash, function(err, result) {
 				if (result === true) {
 					console.log('userController.validateUser:', 'Password comparison is a match');
-					//	User.updateOne({sessionid: ssid}, {$set:{"session" : sid}})
+					User.updateOne({email: requestBody.email }, {sessionid: ssid}, function (err, docs) {
+						if (err) {
+							console.log(err);
+						}
+						else {
+							console.log("updated docs : ", docs)
+						}
+					});
 					next();
 				} else {
 					console.log('userController.validateUser:', 'Password doesnt match');
@@ -72,7 +81,7 @@ userController.sessionUser = (req, res, next) => {
 	// console.log('Look Here', req)
 	req.session.loggedIn = true;
 	req.session.username = res.locals.username 
-	console.log (req.session);
+	// console.log (req.session);
 	res.redirect('/teams/list')
 	next()
 }
