@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 function createResource() {
@@ -64,12 +64,7 @@ function createResource() {
       });
     // ADD RESET STATE HERE AFTER SUMBIT
     console.log("teamId", _payload.teamId);
-    // history.push(`/teams/${_payload.teamId}`);
-    return <Redirect 
-      to = {{
-        pathname: `/teams/${_payload.teamId}`
-      }}
-      />
+    history.push(`/teams/${_payload.teamId}`);
   }
   return (
     <div className="container formContainer">

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const teamSchema = new Schema({
     image: { type: String },
     name: { type: String, required: true, unique: true },
-    category: { type: String, required: true },
+    category: { type: String, required: false },
     description: { type: String },
     userCount: { type: Number },
     resourceCount: { type: Number },

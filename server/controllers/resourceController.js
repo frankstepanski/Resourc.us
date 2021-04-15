@@ -73,7 +73,8 @@ resourceController.scrapeResources = async (req, res, next) => {
         category: requestBody.category,
         title: metaTagData.title,
         img: metaTagData.img,
-        description: metaTagData.description
+        description: metaTagData.description,
+        domain: metaTagData.domain
     })
         .then(data => {
             res.locals.response = data;

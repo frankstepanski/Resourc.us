@@ -7,14 +7,15 @@ function HomePage() {
   const [_resourceOne,setReourceOne] = useState([]);
   const [_resourceTwo,setReourceTwo] = useState([]);
   const [_resourceThree,setReourceThree] = useState([]);
+  const [_resourceFour,setReourceFour] = useState([]);
   
   
   
   async function fetchedData() {
     const teamData = await fetch("http://localhost:3000/teams/list");
     const teams = await teamData.json();
-    const firstThreeTeams = teams.slice(0,3);
-    firstThreeTeams.map(async (team,index) => {
+    const firstFourTeams = teams.slice(0,4);
+    firstFourTeams.map(async (team,index) => {
       const resources = await fetch("http://localhost:3000/resource/list",{
         method: "POST",
           headers: {
@@ -26,14 +27,15 @@ function HomePage() {
       })
       const res = await resources.json();
       res.sort((a,b) => (a.votes < b.votes) ? 1: -1);        
-      const resource = res.slice(0,3);
+      const resource = res.slice(0,4);
 
       if (index === 0) setReourceOne(resource);
       if (index === 1) setReourceTwo(resource);
       if (index === 2) setReourceThree(resource);
+      if (index === 3) setReourceFour(resource);
     })
     
-    setTeams(firstThreeTeams);
+    setTeams(firstFourTeams);
     
     
   }
@@ -80,12 +82,10 @@ function HomePage() {
             {index ===0 &&  _resourceOne.map((res) => {
               return(
               <div className="resourceCardHome" key={res._id + index}>
-                <div className="votes">
-                  <div className="voteCount">{res.votes}</div>
-                </div>
                 <div className="link">
                 {/* <Link to={res.link}>{res.link}</Link> */}
-                <a href={res.link} >
+                <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
                     <div className="resourceTitle">{res.title}</div>
                     {/* <div className="resourceDescription">{res.description}</div>               */}
                     <img src={res.img} />
@@ -97,12 +97,10 @@ function HomePage() {
             {index ===1 &&  _resourceTwo.map((res) => {
               return(
                 <div className="resourceCardHome" key={res._id + index}>
-                  <div className="votes">
-                    <div className="voteCount">{res.votes}</div>
-                  </div>
                   <div className="link">
                     {/* <Link to={res.link}>{res.link}</Link> */}
-                    <a href={res.link} >
+                    <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
                     <div className="resourceTitle">{res.title}</div>
                     {/* <div className="resourceDescription">{res.description}</div>               */}
                     <img src={res.img} />
@@ -114,12 +112,25 @@ function HomePage() {
             {index ===2 &&  _resourceThree.map((res) => {              
               return(
                 <div className="resourceCardHome" key={res._id + index}>
-                  <div className="votes">
-                    <div className="voteCount">{res.votes}</div>
-                  </div>
                   <div className="link">
                     {/* <Link to={res.link}>{res.link}</Link> */}
-                    <a href={res.link} >
+                    <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                  </a>
+                  </div>
+                </div>
+              )}
+            )}  
+            {index ===3 &&  _resourceFour.map((res) => {              
+              return(
+                <div className="resourceCardHome" key={res._id + index}>
+                  <div className="link">
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} target='_blank' >
+                    <div className="resourceDomain">{res.domain}</div>
                     <div className="resourceTitle">{res.title}</div>
                     {/* <div className="resourceDescription">{res.description}</div>               */}
                     <img src={res.img} />
