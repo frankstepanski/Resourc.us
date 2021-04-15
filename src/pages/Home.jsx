@@ -9,7 +9,7 @@ function HomePage() {
   const [_resourceThree,setReourceThree] = useState([]);
   const [_resourceFour,setReourceFour] = useState([]);
   
-  
+  console.log(_teams);
   
   async function fetchedData() {
     const teamData = await fetch("http://localhost:3000/teams/list");
@@ -27,7 +27,7 @@ function HomePage() {
       })
       const res = await resources.json();
       res.sort((a,b) => (a.votes < b.votes) ? 1: -1);        
-      const resource = res.slice(0,4);
+      const resource = res.slice(0,3);
 
       if (index === 0) setReourceOne(resource);
       if (index === 1) setReourceTwo(resource);
@@ -68,7 +68,7 @@ function HomePage() {
   
   return (
     <div className="container">
-      <h1>Home Page</h1>
+      {/* <h1>Home Page</h1> */}
       {
         _teams.map((team,index) => {
           return(
@@ -140,16 +140,21 @@ function HomePage() {
               )}
             )}  
           </div>
-          <div className="meta">
-              <div>{team.category}</div>
-              <div><i className='bx bx-merge'></i> 342</div>
-              <div><i className='bx bxs-user-account'></i> 24</div>
-          </div>   
+          <div className="footer">
+            <div className="meta">
+                <div>{team.category}</div>
+                {/* <div><i className='bx bx-merge'></i> 342</div>
+                <div><i className='bx bxs-user-account'></i> 24</div>               */}
+            </div>  
+            <Link to={`/teams/${team._id}`} className="homeLink">More Resources {">>"}</Link> 
+            
+            </div>
           </div>
           )
+          
         })
       }
-
+      
     </div>
   );
 }
