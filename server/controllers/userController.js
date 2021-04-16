@@ -49,9 +49,12 @@ userController.validateUser = (req, res, next) => {
 							console.log(err);
 						}
 						else {
-							console.log("updated docs : ", docs)
+							console.log("updated docs : ", docs);
+							res.locals.sessionID = {ssid:ssid};
 						}
+						
 					});
+					
 					next();
 				} else {
 					console.log('userController.validateUser:', 'Password doesnt match');
@@ -77,14 +80,29 @@ userController.validateUser = (req, res, next) => {
 		});
 }
 
-userController.sessionUser = (req, res, next) => {
-	// console.log('Look Here', req)
+userController.sessionUser = (req, res, next) => {	
 	req.session.loggedIn = true;
-	req.session.username = res.locals.username 
-	// console.log (req.session);
-	res.redirect('/teams/list')
+	req.session.username = res.locals.username 	
 	next()
 }
 
+userController.getUsername =(req, res, next) => {
+	const requestBody = {sessionid:JSON.parse(req.params.id)};
+	console.log(requestBody)
+	User.findOne(requestBody).exec()
+		.then(data => {
+			console.log(data);
+			res.locals.userInfo = data.firstname;
+		})
+		.catch(err => {
+			next({
+				log: `getUsername - ERROR: ${err}`,
+				message: { 
+					err: 'Error occured in userController.getUsername',
+					message: err
+				}
+			}) 
+		});
+}
 
 module.exports = userController;

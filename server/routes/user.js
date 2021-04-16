@@ -5,8 +5,8 @@ const router = express.Router();
 router.post('/login',
     userController.validateUser, userController.sessionUser,
     (req, res) => {
-        console.log('login User router is working');
-        // res.status(200).json({});
+        //console.log('sessionID', res.locals.sessionID);
+        res.status(200).json({sessionID:req.sessionID});
     }
 );
 
@@ -21,6 +21,13 @@ router.get('/logout', (req, res) => {
 //         res.status(200).json({})
 //     }
 // );
+
+router.get('/:id', 
+    userController.getUsername,
+    (req, res) => {
+        res.status(200).json(res.locals.userInfo)
+    }
+)
 
 router.post('/create',
     userController.createUser, 

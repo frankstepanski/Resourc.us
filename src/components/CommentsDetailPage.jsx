@@ -5,12 +5,14 @@ import CommentCard from "./CommentCard"
 function CommentsDetailPage({ match }) {
   // get the team ID from the URL params (destructure props.match.params)
   const { params: { id } } = match;
+  const currentSession = localStorage.getItem("session");
+  const [user, setUser] = useState([]);
+  console.log('user',user)
 
   // set Team info in state
   const [resource, setResource] = useState([]);
 
-  // set Team Resources in state
-  const [resourceComments, setResourceComments] = useState([]);
+  
 
   useEffect(() => {
     // TO DO LATER: change to use teamController.findTeam
@@ -19,20 +21,15 @@ function CommentsDetailPage({ match }) {
       .then(response => response.json())
       .then(data => {
         const resource = data.filter(r => r._id === id)
-        // console.log('teams data:', data)
-        // console.log('individual team data:', team)
         setResource(resource)
+        fetch(`http://localhost:3000/user/${currentSession}`)
+          .then(response => response.json())
+          .then( user => {
+            console.log('user',user);
+            setUser(user);
+          })
       })
-      // .then(() => {
-      //   // // GET resources that belong to current team by team ID
-      //   // fetch("http://localhost:3000/comments/list")
-      //   //   .then(response => response.json())
-      //   //   .then(data => {
-      //   //     const currentComments = data.filter(c => c.resourceId === id)
-      //   //     // console.log("resources: ", data)
-      //   //     setResourceComments(currentComments)
-      //   //   })
-      // })
+      
       .catch(err => {
         console.log('GET FAILED', err);
       })
