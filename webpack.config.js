@@ -58,7 +58,7 @@ const config = {
     contentBase: path.resolve(__dirname, 'dist'),
     open: true,
     clientLogLevel: 'silent',
-    port: 4000,
+    port: 4001,
     historyApiFallback: true,
     hot: true,
     // proxy: { "*": 

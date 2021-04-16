@@ -99,7 +99,7 @@
 
 .deleteContainer 
         .deleteResource {
-            display: inline-block;
+        
             float: right;
             background-color: rgb(128, 59, 59);
             width:20px;
@@ -108,7 +108,8 @@
             border-radius: 5px;
             margin-top: 10px;
             margin-right: 10px;
-            font-weight: bold;        
+            font-weight: bold;    
+            padding-bottom: 25px;    
         }
 
     }
@@ -267,6 +268,7 @@
             font-weight: 700;
             letter-spacing: 0.015rem;
             margin-right: 0.25rem;
+            cursor: pointer;
             &:first-child {
                 background-color: #343a40;
                 margin-right: 0.5rem;
