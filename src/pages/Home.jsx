@@ -7,14 +7,15 @@ function HomePage() {
   const [_resourceOne,setReourceOne] = useState([]);
   const [_resourceTwo,setReourceTwo] = useState([]);
   const [_resourceThree,setReourceThree] = useState([]);
+  const [_resourceFour,setReourceFour] = useState([]);
   
-  
+  console.log(_teams);
   
   async function fetchedData() {
     const teamData = await fetch("http://localhost:3000/teams/list");
     const teams = await teamData.json();
-    const firstThreeTeams = teams.slice(0,3);
-    firstThreeTeams.map(async (team,index) => {
+    const firstFourTeams = teams.slice(0,4);
+    firstFourTeams.map(async (team,index) => {
       const resources = await fetch("http://localhost:3000/resource/list",{
         method: "POST",
           headers: {
@@ -31,9 +32,10 @@ function HomePage() {
       if (index === 0) setReourceOne(resource);
       if (index === 1) setReourceTwo(resource);
       if (index === 2) setReourceThree(resource);
+      if (index === 3) setReourceFour(resource);
     })
     
-    setTeams(firstThreeTeams);
+    setTeams(firstFourTeams);
     
     
   }
@@ -66,7 +68,7 @@ function HomePage() {
   
   return (
     <div className="container">
-      <h1>Home Page</h1>
+      {/* <h1>Home Page</h1> */}
       {
         _teams.map((team,index) => {
           return(
@@ -80,11 +82,14 @@ function HomePage() {
             {index ===0 &&  _resourceOne.map((res) => {
               return(
               <div className="resourceCardHome" key={res._id + index}>
-                <div className="votes">
-                  <div className="voteCount">{res.votes}</div>
-                </div>
                 <div className="link">
-                <Link to={res.link}>{res.link}</Link>
+                {/* <Link to={res.link}>{res.link}</Link> */}
+                <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                </a>
                 </div>
               </div>
               )}
@@ -92,11 +97,14 @@ function HomePage() {
             {index ===1 &&  _resourceTwo.map((res) => {
               return(
                 <div className="resourceCardHome" key={res._id + index}>
-                  <div className="votes">
-                    <div className="voteCount">{res.votes}</div>
-                  </div>
                   <div className="link">
-                    <Link to={res.link}>{res.link}</Link>
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                   </a>
                   </div>
                 </div>
               )}
@@ -104,26 +112,49 @@ function HomePage() {
             {index ===2 &&  _resourceThree.map((res) => {              
               return(
                 <div className="resourceCardHome" key={res._id + index}>
-                  <div className="votes">
-                    <div className="voteCount">{res.votes}</div>
-                  </div>
                   <div className="link">
-                    <Link to={res.link}>{res.link}</Link>
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} target='_blank'>
+                    <div className="resourceDomain">{res.domain}</div>
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                  </a>
+                  </div>
+                </div>
+              )}
+            )}  
+            {index ===3 &&  _resourceFour.map((res) => {              
+              return(
+                <div className="resourceCardHome" key={res._id + index}>
+                  <div className="link">
+                    {/* <Link to={res.link}>{res.link}</Link> */}
+                    <a href={res.link} target='_blank' >
+                    <div className="resourceDomain">{res.domain}</div>
+                    <div className="resourceTitle">{res.title}</div>
+                    {/* <div className="resourceDescription">{res.description}</div>               */}
+                    <img src={res.img} />
+                  </a>
                   </div>
                 </div>
               )}
             )}  
           </div>
-          <div className="meta">
-              <div>{team.category}</div>
-              <div><i className='bx bx-merge'></i> 342</div>
-              <div><i className='bx bxs-user-account'></i> 24</div>
-          </div>   
+          <div className="footer">
+            <div className="meta">
+                <div>{team.category}</div>
+                {/* <div><i className='bx bx-merge'></i> 342</div>
+                <div><i className='bx bxs-user-account'></i> 24</div>               */}
+            </div>  
+            <Link to={`/teams/${team._id}`} className="homeLink">More Resources {">>"}</Link> 
+            
+            </div>
           </div>
           )
+          
         })
       }
-
+      
     </div>
   );
 }

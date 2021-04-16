@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, Route } from 'react-router-dom';
 function createResource() {
   // State
   const [_payload, setPayload] = useState({
@@ -40,6 +41,7 @@ function createResource() {
     console.log("team", _teams)
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
+
   function handleClick(event) {
     event.preventDefault();
     //test if server is working
@@ -114,7 +116,7 @@ function createResource() {
             <option value={team._id}>{team.name}</option>
           ))}
         </select>
-        <button onClick={handleClick} className="btn btn-lg btn-info">
+        <button  onClick={handleClick} className="btn btn-lg btn-info">
           Create Resource
         </button>
       </form>

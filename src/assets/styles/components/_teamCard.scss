@@ -135,13 +135,14 @@
     flex-direction: row;
     
     .votes {
-        padding: 1rem;
+        //padding: 1rem;
+        padding-left: 20px;
         & > div {
             display: inline;
             float: left;
         }
         .voteCount {
-            font-size: 1.5em;
+            font-size: 1.5rem;
         }
         .actions {
             margin-left: 0.75rem;
@@ -155,6 +156,7 @@
 }
 .resourceCardHome {
     // display: flex;
+    border:1px solid rgba(126, 125, 125, 0.322);
     width: 30%;
     padding: 20px 20px 20px 20px;
     margin: 20px;
@@ -169,11 +171,12 @@
 
 .teamCardHome {
     position: relative;
-    margin: 50px 50px 50px 50px;
+    margin: 40px 50px 40px 50px;
     display: flex;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
+    
     background-color: #fff;
     background-clip: border-box;
     border: 0 solid transparent;
@@ -209,23 +212,38 @@
         }
         
     }
-    .meta {
-        div {
-            font-size: 0.75rem;
-            float: right;
-            margin-bottom: 20px;
-            background-color: #838d96;
-            display: inline-block;
-            padding: 0.25em 0.4em;
-            border-radius: 3px;
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 0.015rem;
-            margin-right: 0.25rem;
-            &:first-child {
-                background-color: #343a40;
-                margin-right: 0.5rem;
+
+    .footer {
+        // margin-left: 20px;
+        margin-right: 20px;
+        .meta {
+            div {
+                margin-left: 0;
+                margin-bottom:0;
+                font-size: 0.75rem;
+                float: left;
+                
+                background-color: #e2e2df81;
+                display: inline-block;
+                padding: 10px 10px 10px 10px;
+                
+                
+                color: rgb(65, 62, 62);
+                font-weight: 700;
+                letter-spacing: 0.015rem;
+                margin-right: 0.25rem;
             }
+        }
+
+        .homeLink {
+            display: inline-block;
+            float: right;
+            font-size: 14px;
+            color:rgb(5, 5, 5)
+        }
+        .homeLink:hover {
+            color:rgb(131, 128, 128);
+            cursor: pointer;
         }
     }
 
@@ -279,9 +297,15 @@
 
 .link {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
+    padding-left: 10px;
+    padding-right: 20px;  
     a {
       text-decoration: none
+    }
+    .resourceDomain {
+        font-size: 11px;
+        align-items: center;
     }
     .resourceTitle {
         color: black;
@@ -293,6 +317,39 @@
     }
     img {
         width: 400px;
+        max-height: 300px;
 
+    }
+}
+
+
+.teamCardHome {
+    
+    .link {
+        display: flex;
+        flex-direction: column;    
+        a {
+        text-decoration: none
+        }
+        .resourceTitle {
+            margin-bottom: 20px;
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .resourceDescription {
+            color: rgb(94, 89, 89);
+            font-size: 13px;
+        }
+        img {
+            width: 100%;
+            max-height: 200px;
+            
+
+        }
+        .resourceDomain {
+            font-size: 11px;
+            align-items: center;
+        }
     }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory} from "react-router-dom";
 // import axios from "axios";
 
 function createTeam() {
@@ -9,6 +10,7 @@ function createTeam() {
     description: "",
     category: "",
   });
+  const history = useHistory();
 
   function handleChange(event) {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
@@ -38,6 +40,7 @@ function createTeam() {
         console.log("Post Fail", err);
       });
     // ADD RESET STATE HERE AFTER SUMBIT
+    history.push(`/teams/`);
   }
 
   return (
