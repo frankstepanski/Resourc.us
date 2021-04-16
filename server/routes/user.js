@@ -23,9 +23,18 @@ router.get('/logout', (req, res) => {
 // );
 
 router.get('/:id', 
+    userController.getUserInfo,
+    (req, res) => {
+        // console.log('before sending',res.locals.userInfo);
+        res.status(200).json(res.locals.userInfo);
+    }
+)
+
+router.get('/name/:id', 
     userController.getUsername,
     (req, res) => {
-        res.status(200).json(res.locals.userInfo)
+        // console.log('before sending',res.locals.userInfo);
+        res.status(200).json(res.locals.userInfo);
     }
 )
 

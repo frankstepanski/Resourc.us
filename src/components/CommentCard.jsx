@@ -5,20 +5,23 @@ import { Link } from 'react-router-dom';
 // Render resource
 // Put request to upvote and downvote
 
-function CommentCard({ resourceId }) {
+function CommentCard({ resourceId,userinfo}) {
   const [_comment, setComment] = useState([]);
+  const [_user, setUser] = useState([]);
+  
   // const [_backupResource, setBackupResource] = useState([]);
   const [count, setCount] = useState(0);
+  console.log('userinfo in comment card',userinfo);
   // const [tags, setTags] = useState([]);
   // const [_upvote, setUpvote] = useState({});
-
+  
   let _payload = {};
   if(!resourceId){
      _payload = {};
   } else{
      _payload = { "resourceId": resourceId }
   }
-  console.log(_payload);
+  console.log(_comment);
   
   useEffect(() => {
     console.log(_payload)
@@ -35,8 +38,8 @@ function CommentCard({ resourceId }) {
       })
       .then((data) => {
         // console.log(data);
-        setComment(data);
-        console.log('_resource:', _comment)
+        setComment(data);        
+        
       })
       .catch((err) => {
         console.log("Post Fail", err);
@@ -73,7 +76,10 @@ function CommentCard({ resourceId }) {
         console.log("Post Fail", err);
       });
   }
+
   
+  
+
   return (
     <div className="container">
       {_comment.map((comment,index) => (
@@ -88,7 +94,7 @@ function CommentCard({ resourceId }) {
           <div className="resourceArea">
             <div className="link">
               {/* <Link to={resource.link}>{resource.link}</Link> */}
-              <div className="resourceDomain">{comment.userId}</div>
+              <div className="resourceDomain">{(comment.userId).charAt(0).toUpperCase()+(comment.userId).slice(1)}</div>
               <div className="resourceTitle">{comment.text}</div>
             </div>
           </div>

@@ -11,11 +11,12 @@ export const SignupForm = () => {
 	});
   const { register, handleSubmit } = useForm()
   const history = useHistory()
-
+  
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
-  const onSubmit = handleSubmit((data) => {
-    fetch('/user/', {
+  const onSubmit = handleSubmit(() => {
+    console.log(values);
+    fetch('http://localhost:3000/user/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
