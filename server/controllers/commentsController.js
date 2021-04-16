@@ -21,6 +21,25 @@ commentsController.listAllComments = (req, res, next) => {
     });
 };
 
+commentsController.listComments = (req, res, next) => {
+  const requestBody = req.body;
+  Comments.find(requestBody)
+    .then((data) => {
+      res.locals.response = data;
+      console.log("commentsController.listComments", "comments listed");
+      next();
+    })
+    .catch((err) => {
+      next({
+        log: `List All Comments - ERROR: ${err}`,
+        message: {
+          err: "Error occured in commentsController.listComments",
+          message: err,
+        },
+      });
+    });
+};
+
 // Post a Comment to a Resource, as a User
 commentsController.createComment = (req, res, next) => {
   const requestBody = req.body;
@@ -44,5 +63,26 @@ commentsController.createComment = (req, res, next) => {
       });
     });
 };
+
+commentsController.deleteComment= (req, res, next) => {
+  const requestBody = req.body;
+  Comments.findOneAndDelete({
+      _id: requestBody._id
+  })
+  .then(data => {
+      res.locals.response = data;
+      console.log('commentsController.deleteComment: ', 'comment deleted')
+      next();
+  })
+  .catch(err => {
+      next({
+          log: `Delete Comment- ERROR: ${err}`,
+          message: {
+              err: 'Error occured in commentsController.deleteComment ',
+              message: err
+          }
+      })
+  });
+}
 
 module.exports = commentsController;

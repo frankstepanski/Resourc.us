@@ -7,10 +7,28 @@ router.get("/listAll", commentsController.listAllComments, (req, res) => {
   res.status(200).json(res.locals.response);
 });
 
+router.post('/list',
+    commentsController.listComments,
+    (req, res) => {
+        // console.log('list resources router is working');
+        // console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
 router.post("/create", commentsController.createComment, (req, res) => {
   console.log("create comment router is working");
   console.log(res.locals.response);
   res.status(200).json(res.locals.response);
 });
+
+router.post('/delete',
+    commentsController.deleteComment,
+    (req, res) => {
+        // console.log('delete resource router is working');
+        // console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
 
 module.exports = router;
