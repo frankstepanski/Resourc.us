@@ -14,7 +14,8 @@ import TeamDetailPage from "./components/TeamDetailPage"
 import Navbars from "./components/Navbar";
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
-import ResourceCard from "./components/ResourceCard"
+import ResourceCard from "./components/ResourceCard";
+import CommentsDetailPage from "./components/CommentsDetailPage";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
         <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
+        <Route path={"/comments/:id"} component={CommentsDetailPage}></Route>
       </div>
     </div>
   );
