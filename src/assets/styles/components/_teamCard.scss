@@ -134,13 +134,14 @@
     flex-direction: row;
     
     .votes {
-        padding: 1rem;
+        //padding: 1rem;
+        padding-left: 20px;
         & > div {
             display: inline;
             float: left;
         }
         .voteCount {
-            font-size: 1.5em;
+            font-size: 1.5rem;
         }
         .actions {
             margin-left: 0.75rem;
@@ -294,9 +295,15 @@
 
 .link {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
+    padding-left: 10px;
+    padding-right: 20px;  
     a {
       text-decoration: none
+    }
+    .resourceDomain {
+        font-size: 11px;
+        align-items: center;
     }
     .resourceTitle {
         color: black;
