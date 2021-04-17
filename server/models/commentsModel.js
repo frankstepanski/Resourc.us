@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const commentsSchema = new Schema({
   text: { type: String, required: true},
   userId: {type: String, required: true},
-  resourceId: {type: String, required: true}
+  resourceId: {type: String, required: true},
+  image: {type: String, require: false}
 }, {timestamps: true})
 
 const Comments = mongoose.model('Comments', commentsSchema);

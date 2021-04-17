@@ -7,6 +7,7 @@ const userSchema = new Schema({
 	firstname: { type: String, required: [true, "can't be blank"] },
 	lastname: { type: String },
 	sessionid: {type: String },
+	image: {type: String},
 	email: { type: String, required: [true, "can't be blank"], unique: true, index: true },
 	hash: { type: String, required: [true, "can't be blank"], min: [8, 'Not enough characters'] }
 }, { timestamps: true });
