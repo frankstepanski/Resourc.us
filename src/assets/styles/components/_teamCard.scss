@@ -97,14 +97,14 @@
                     margin-right: 0.5rem;
             }  
 
-        .homeLink {
+        .homeLink1 {
             display: inline-block;
             float: right;
             width: 150px;
             font-size: 50px;
             color:rgb(5, 5, 5)
         }
-        .homeLink:hover {
+        .homeLink1:hover {
             color:rgb(131, 128, 128);
             cursor: pointer;
         }
@@ -171,11 +171,12 @@
     .link{
         display: flex;
         flex-direction: row;
+        padding-bottom: 20px;
         .profileArea {
             display: flex;
             flex-direction: column;
             float: left;
-            margin: 10px 10px 10px 10px;
+            padding-left: 10px;                     
             padding-right: 15px;
             border-right: 3px dotted rgb(83, 81, 81);
 
@@ -185,6 +186,8 @@
             }
         }
         .commentDetail{
+            padding-left: 10px;
+            padding-top: 10px;
             
         }
     } 
@@ -322,8 +325,12 @@
             font-weight: 700;
             letter-spacing: 0.015rem;
             margin-right: 0.25rem;
+<<<<<<< HEAD
             cursor: pointer;
             &:first-child {
+=======
+            &:active {
+>>>>>>> b3b97cdf5183e6fe1957134236986966b37a6a51
                 background-color: #343a40;
                 margin-right: 0.5rem;
             }

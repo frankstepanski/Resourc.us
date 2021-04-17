@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from 'react-hook-form';
 import CommentCard from "./CommentCard"
 // import { Link } from 'react-router-dom';
 
@@ -10,8 +9,7 @@ function CommentsDetailPage({ match }) {
 
   // set Team info in state
   const [resource, setResource] = useState([]);
-  const { register, handleSubmit } = useForm()
-
+  
   
 
   useEffect(() => {
