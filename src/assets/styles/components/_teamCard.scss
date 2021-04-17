@@ -169,11 +169,12 @@
     .link{
         display: flex;
         flex-direction: row;
+        padding-bottom: 20px;
         .profileArea {
             display: flex;
             flex-direction: column;
             float: left;
-            margin: 10px 10px 10px 10px;
+            padding-left: 10px;                     
             padding-right: 15px;
             border-right: 3px dotted rgb(83, 81, 81);
 
@@ -183,6 +184,8 @@
             }
         }
         .commentDetail{
+            padding-left: 10px;
+            padding-top: 10px;
             
         }
     } 

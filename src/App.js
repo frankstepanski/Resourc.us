@@ -48,8 +48,7 @@ function App() {
       <div className="innerContainer">
         <header className="mainHeader">
         { !currentSession &&
-        <ul>
-          <li className="primary-action">{button}</li>          
+        <ul>                  
           <li><Link to='/login'>Login</Link></li>
           <li><Link to='/signup'>Signup</Link></li>          
           
