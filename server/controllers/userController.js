@@ -11,6 +11,7 @@ userController.createUser = (req, res, next) => {
 		hash: requestBody.password,
 		firstname: requestBody.firstname,
 		lastname: requestBody.lastname,
+		image: requestBody.image
 	})
 		.then(data => {
 			res.locals.response = data;
@@ -94,7 +95,8 @@ userController.getUserInfo =(req, res, next) => {
 			// console.log(data);
 			res.locals.userInfo = {
 				firstname: data.firstname,
-				userId : data._id
+				userId : data._id,
+				image: data.image
 			};
 			// console.log(res.locals.userInfo);
 			next();
