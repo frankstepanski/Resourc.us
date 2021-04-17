@@ -42,6 +42,7 @@ commentsController.listComments = (req, res, next) => {
 
 // Post a Comment to a Resource, as a User
 commentsController.createComment = (req, res, next) => {
+  console.log('we are in creatComment');
   const requestBody = req.body;
   Comments.create({
     text: requestBody.text,
