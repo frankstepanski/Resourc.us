@@ -12,17 +12,19 @@ export const LoginForm = () => {
 
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
-  const onSubmit = handleSubmit((data) => {
-    fetch('http://localhost:3000/user/login/', {
+  const onSubmit = handleSubmit(() => {
+    fetch('http://localhost:3000/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(values)
     })
-      .then(resp => console.log(resp))
+      .then(resp => resp.json())
       .then(data => {
         // Enter something that stores or handles cookies or JWT
+        localStorage.setItem("session", JSON.stringify(data.sessionID));
+        console.log(localStorage.getItem("session"));
         history.push("/");
       })
       .catch(err => console.log('Auth Form won\'t fetch, error:', err));
