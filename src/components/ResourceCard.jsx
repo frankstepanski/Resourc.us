@@ -10,6 +10,7 @@ function ResourceCard({ teamId }) {
   const [_backupResource, setBackupResource] = useState([]);
   const [count, setCount] = useState(0);
   const [tags, setTags] = useState([]);
+  const [activeTag,setActiveTag] = useState({});
   // const [_upvote, setUpvote] = useState({});
   console.log("teamID",teamId);
   console.log("resource",_resource);
@@ -232,8 +233,7 @@ function ResourceCard({ teamId }) {
             <div className="meta" onClick={getCategory}>
               <div>{resource.category}</div>
             </div>
-            <Link to={`/comments/${resource._id}`} className="homeLink">See Comments {">>"}</Link>
-            
+            <Link to={`/comments/${resource._id}`} style={{float:"right",paddingRight:"20px",paddingTop:"10px",fontSize:"14px"}} className="homeLink1">See Comments {">>"}</Link>            
           </div>
         </div>
         

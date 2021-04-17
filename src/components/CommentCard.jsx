@@ -135,13 +135,15 @@ function CommentCard({ resourceId,userinfo}) {
       <div className="commentArea">
         <form onSubmit={onSubmit}>
           <div className="form-inline">
+            <div className="profileInfo">
             <label>{user.firstname && ((user.firstname).charAt(0).toUpperCase()+(user.firstname).slice(1))}</label>
-            <img src={user.image} 
-                  height= "70px"
-                  width= "70px"
-                  object-fit= "scale-down"
-                  border-radius= "50%">
+            <img src={user.image} style={{
+                  height: "40px",
+                  width: "40px",
+                  objectFit: "scale-down",
+                  borderRadius: "50%"}}>
                   </img>
+            </div>
             <input type="text" className="form-control" placeholder="Enter Your Comment" id="text" ref={register} onChange={handleChange} style={{ height: "80px",width:"70%"}} />
             <button type="submit" className="btn btn-primary">Enter</button>
           </div>           
@@ -164,7 +166,8 @@ function CommentCard({ resourceId,userinfo}) {
                 <div className="profileName">{(comment.userId).charAt(0).toUpperCase()+(comment.userId).slice(1)}</div>
                 <img className="profilePicture" style = {{ height: "35px",
                     width: "35px",
-                    objectFit: "scale-down"}} src={comment.image}>
+                    objectFit: "scale-down",
+                    borderRadius: "50%"}} src={comment.image}>
                     </img>
               </div>
               <div className="commentDetail">{comment.text}</div>
