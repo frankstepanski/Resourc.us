@@ -2,6 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 
 // import router
 import { Route, Link, useLocation } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 // import pages
 import Home from "./pages/Home";
@@ -20,9 +21,10 @@ import CommentsDetailPage from "./components/CommentsDetailPage";
 
 function App() {
   const location = useLocation().pathname;
+  const history = useHistory();
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
-  
-
+  const currentSession = localStorage.getItem("session");
+  console.log(currentSession);
   useLayoutEffect(() => {
 		if (location === '/teams') {
       setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
@@ -32,17 +34,34 @@ function App() {
       setButton(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
     }
   }, [location]);
+  
+  function logoutSession (){
+    localStorage.removeItem("session");
+    history.push("/");
+  }
+
+  
 
   return (
     <div className="outerContainer">
       <Navbars />
       <div className="innerContainer">
         <header className="mainHeader">
+        { !currentSession &&
         <ul>
-          <li className="primary-action">{button}</li>
+          <li className="primary-action">{button}</li>          
           <li><Link to='/login'>Login</Link></li>
-          <li><Link to='/signup'>Signup</Link></li>
+          <li><Link to='/signup'>Signup</Link></li>          
+          
         </ul>
+        }
+
+       { currentSession &&
+        <ul>
+          <li className="primary-action">{button}</li>        
+          <li><button id="logout" onClick={logoutSession}>Logout</button></li>
+        </ul>
+        }
         </header>
         <Route path="/" exact>{<Home></Home>}</Route>
         <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
