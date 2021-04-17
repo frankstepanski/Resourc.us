@@ -232,8 +232,7 @@ function ResourceCard({ teamId }) {
             <div className="meta" onClick={getCategory}>
               <div>{resource.category}</div>
             </div>
-            <Link to={`/comments/${resource._id}`} className="homeLink">See Comments {">>"}</Link>
-            
+            <Link to={`/comments/${resource._id}`} style={{float:"right",paddingRight:"20px",paddingTop:"10px",fontSize:"14px"}} className="homeLink1">See Comments {">>"}</Link>            
           </div>
         </div>
         
