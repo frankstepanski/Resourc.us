@@ -98,6 +98,7 @@ function CommentCard({ resourceId,userinfo}) {
       text:values.text,
       resourceId: resourceId,
       userId: user.firstname,
+      image: user.image
     }
     console.log('this is payload',_payload)
     fetch('http://localhost:3000/comments/create', {
@@ -135,6 +136,12 @@ function CommentCard({ resourceId,userinfo}) {
         <form onSubmit={onSubmit}>
           <div className="form-inline">
             <label>{user.firstname && ((user.firstname).charAt(0).toUpperCase()+(user.firstname).slice(1))}</label>
+            <img src={user.image} 
+                  height= "70px"
+                  width= "70px"
+                  object-fit= "scale-down"
+                  border-radius= "50%">
+                  </img>
             <input type="text" className="form-control" placeholder="Enter Your Comment" id="text" ref={register} onChange={handleChange} style={{ height: "80px",width:"70%"}} />
             <button type="submit" className="btn btn-primary">Enter</button>
           </div>           
@@ -152,9 +159,15 @@ function CommentCard({ resourceId,userinfo}) {
           </div>
           <div className="resourceArea">
             <div className="link">
-              {/* <Link to={resource.link}>{resource.link}</Link> */}
-              <div className="resourceDomain">{(comment.userId).charAt(0).toUpperCase()+(comment.userId).slice(1)}</div>
-              <div className="resourceTitle">{comment.text}</div>
+              <div className="profileArea">
+                {/* <Link to={resource.link}>{resource.link}</Link> */}
+                <div className="profileName">{(comment.userId).charAt(0).toUpperCase()+(comment.userId).slice(1)}</div>
+                <img className="profilePicture" style = {{ height: "35px",
+                    width: "35px",
+                    objectFit: "scale-down"}} src={comment.image}>
+                    </img>
+              </div>
+              <div className="commentDetail">{comment.text}</div>
             </div>
           </div>
         </div>

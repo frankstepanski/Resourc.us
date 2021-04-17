@@ -168,8 +168,28 @@
             }
         }
     }
-    
+    .link{
+        display: flex;
+        flex-direction: row;
+        .profileArea {
+            display: flex;
+            flex-direction: column;
+            float: left;
+            margin: 10px 10px 10px 10px;
+            padding-right: 15px;
+            border-right: 3px dotted rgb(83, 81, 81);
+
+            .profileName {
+            }
+            .profilePicture {
+            }
+        }
+        .commentDetail{
+            
+        }
+    } 
 }
+
 .resourceCardHome {
     // display: flex;
     border:1px solid rgba(126, 125, 125, 0.322);

@@ -7,7 +7,8 @@ export const SignupForm = () => {
 		email: '',
 		password: '',
     firstname: '',
-    lastname: ''
+    lastname: '',
+    image: ''
 	});
   const { register, handleSubmit } = useForm()
   const history = useHistory()
@@ -56,6 +57,10 @@ export const SignupForm = () => {
 
         <div className="form-group">
           <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <input type="text" className="form-control" placeholder="imageURL" id="image" ref={register} onChange={handleChange} />
         </div>
 
         <div className="form-group">

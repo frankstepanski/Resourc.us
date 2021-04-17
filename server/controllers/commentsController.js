@@ -48,6 +48,7 @@ commentsController.createComment = (req, res, next) => {
     text: requestBody.text,
     userId: requestBody.userId,
     resourceId: requestBody.resourceId,
+    image: requestBody.image,
   })
     .then((data) => {
       res.locals.response = data;
